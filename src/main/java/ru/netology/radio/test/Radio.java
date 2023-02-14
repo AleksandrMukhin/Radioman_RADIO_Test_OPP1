@@ -5,53 +5,67 @@ public class Radio {
     private int numberCurrentRadioStation;
     private int volumeSound;
 
+
     public int getNumberCurrentRadioStation() {
         return numberCurrentRadioStation;
     }
 
-    public void setToMaxNumber() {
-        numberCurrentRadioStation = 9;
+    public int setToMaxNumber() {
+        return numberCurrentRadioStation = 9;
+    }
+
+    public void setNumberCurrentRadioStation(int radioStation) {
+        if (radioStation < 0) {
+            return;
+        }
+        if (radioStation > 9) {
+            return;
+        }
+        numberCurrentRadioStation = radioStation;
     }
 
     public void next() {
-        if (numberCurrentRadioStation < 9) {
-            numberCurrentRadioStation = numberCurrentRadioStation + 1;
+        if (numberCurrentRadioStation >= 9) {
+            setNumberCurrentRadioStation(0);
+        } else {
+            setNumberCurrentRadioStation(numberCurrentRadioStation + 1);
         }
     }
 
-    public void prev(int newPrev) {
-        if (newPrev > 1) {
-            numberCurrentRadioStation = newPrev - 1;
+    public void prev() {
+        if (numberCurrentRadioStation <= 0) {
+            setNumberCurrentRadioStation(9);
+        } else {
+            setNumberCurrentRadioStation(numberCurrentRadioStation - 1);
         }
     }
 
-    public void setNumberCurrentRadioStation(int newNumberCurrentRadioStation) {
-        if (newNumberCurrentRadioStation < 0) {
-            return;
-        }
-        if (newNumberCurrentRadioStation > 9) {
-            return;
-        }
-        numberCurrentRadioStation = newNumberCurrentRadioStation;
-    }
 
     public int getVolumeSound() {
         return volumeSound;
     }
 
-    public void setToMaxVolume() {
-        volumeSound = 10;
+    public int setToMaxVolume() {
+        return volumeSound = 10;
+    }
+
+    public void setVolumeSound(int radioVolume) {
+        if (radioVolume < 0) {
+            return;
+        }
+        if (radioVolume > 10) {
+            return;
+        }
+        volumeSound = radioVolume;
     }
 
     public void volumeUp() {
-        if (volumeSound < 10) {
-            volumeSound = volumeSound + 1;
-        }
+        setVolumeSound(volumeSound + 1);
     }
 
-    public void volumeDown(int newVolumeDown) {
-        if (newVolumeDown > 0) {
-            volumeSound = newVolumeDown - 1;
-        }
+    public void volumeDown() {
+        setVolumeSound(volumeSound - 1);
     }
+
 }
+
